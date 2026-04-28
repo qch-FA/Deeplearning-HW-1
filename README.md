@@ -19,20 +19,9 @@ Codebase for Homework 1 of the 2026 Spring Course CS60003: Deep Learning and Spa
 - `Pillow`
 - `matplotlib`
 
-如果你还需要导出 Markdown 报告为 PDF，还需要：
-
-- `markdown`
-- 本机安装 `Microsoft Edge` 或 `Google Chrome`
-
 ### 1.3 安装命令
 
 在项目根目录下执行：
-
-```bash
-python -m pip install numpy Pillow matplotlib markdown
-```
-
-如果你只需要训练和测试，不导出 PDF，也可以只安装：
 
 ```bash
 python -m pip install numpy Pillow matplotlib
@@ -62,10 +51,6 @@ hw1/
 ├─ evaluate_hw1.py
 └─ README.md
 ```
-
-也就是说，`EuroSAT_RGB` 文件夹应与 `run_hw1.py` 位于同一目录下。
-
----
 
 ## 3. 如何运行训练脚本
 
@@ -101,7 +86,7 @@ python run_hw1.py
 
 ### 3.2 复现实验报告结果的训练命令
 
-如果你想复现当前项目里最终采用的正式实验结果，可以运行：
+如果想复现当前项目里最终采用的正式实验结果，可以运行：
 
 ```bash
 python run_hw1.py --image-size 32 --search-trials 6 --search-epochs 6 --final-epochs 24 --batch-size 256 --hidden-space 192x96 256x128 320x160 --lr-space 0.03 0.05 --weight-decay-space 0.0001 0.0005 --activation-space relu tanh --lr-decay 0.95 --output-dir outputs
@@ -111,7 +96,7 @@ python run_hw1.py --image-size 32 --search-trials 6 --search-epochs 6 --final-ep
 
 ### 3.3 常用可调参数
 
-你可以通过命令行修改以下超参数：
+可以通过命令行修改以下超参数：
 
 - `--data-root`：数据集目录
 - `--output-dir`：输出目录
@@ -263,27 +248,8 @@ python evaluate_hw1.py --checkpoint outputs/final/best_model.npz --image-size 32
 
 ---
 
-## 7. 可选：导出实验报告 PDF
 
-如果已经生成了报告草稿 `outputs/reports/实验报告草稿.md`，可以运行：
-
-```bash
-python export_report_pdf.py
-```
-
-默认会在同目录生成：
-
-- `outputs/reports/实验报告草稿.html`
-- `outputs/reports/实验报告草稿.pdf`
-
-注意：
-
-- 该脚本依赖 `markdown`
-- 需要系统安装 `Microsoft Edge` 或 `Google Chrome`
-
----
-
-## 8. 说明
+## 7. 说明
 
 1. 本项目默认在 CPU 上运行，不依赖 GPU。
 2. 本项目没有使用任何现成自动微分深度学习框架。
@@ -291,17 +257,3 @@ python export_report_pdf.py
 4. 如果希望获得更稳定的结果，请固定 `--seed`，并使用正式实验的训练命令。
 
 ---
-
-## 9. 一组推荐命令
-
-### 训练
-
-```bash
-python run_hw1.py --image-size 32 --search-trials 6 --search-epochs 6 --final-epochs 24 --batch-size 256 --hidden-space 192x96 256x128 320x160 --lr-space 0.03 0.05 --weight-decay-space 0.0001 0.0005 --activation-space relu tanh --lr-decay 0.95 --output-dir outputs
-```
-
-### 测试
-
-```bash
-python evaluate_hw1.py --checkpoint outputs/final/best_model.npz --batch-size 256
-```
