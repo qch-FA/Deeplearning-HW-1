@@ -10,19 +10,6 @@ from .data import DatasetBundle
 from .model import MLPClassifier
 from .utils import ensure_dir, save_json
 
-
-PAIR_REASONS = {
-    ("Highway", "River"): "两类都可能表现为细长带状结构，且常与植被或裸地区域相邻，低分辨率下边界纹理接近。",
-    ("River", "Highway"): "河流和高速公路都可能以长条状贯穿画面，颜色与周围地物混合后容易混淆。",
-    ("Industrial", "Residential"): "工业区与住宅区都包含规则建筑块和道路网络，密集人工纹理较相似。",
-    ("Residential", "Industrial"): "住宅区与工业区都包含大量屋顶和道路，局部块状纹理相近。",
-    ("Forest", "Pasture"): "森林与草地都以绿色植被为主，当树冠纹理不明显时容易被看作更均匀的草地区域。",
-    ("Pasture", "Forest"): "草地与森林共享绿色主色调，阴影或地块边缘会让草地看起来更像森林。",
-    ("SeaLake", "River"): "水体类别共享明显蓝色通道响应，若水面形状较窄或岸线复杂，湖泊容易误判为河流。",
-    ("River", "SeaLake"): "宽河段或河道弯曲区域在局部视野下可能与湖泊十分接近。",
-}
-
-
 def plot_training_curves(history: dict, output_path: str | Path) -> None:
     output_path = Path(output_path)
     ensure_dir(output_path.parent)
@@ -146,6 +133,17 @@ def visualize_first_layer_weights(
     plt.close()
     return summaries
 
+
+PAIR_REASONS = {
+    ("Highway", "River"): "两类都可能表现为细长带状结构，且常与植被或裸地区域相邻，低分辨率下边界纹理接近。",
+    ("River", "Highway"): "河流和高速公路都可能以长条状贯穿画面，颜色与周围地物混合后容易混淆。",
+    ("Industrial", "Residential"): "工业区与住宅区都包含规则建筑块和道路网络，密集人工纹理较相似。",
+    ("Residential", "Industrial"): "住宅区与工业区都包含大量屋顶和道路，局部块状纹理相近。",
+    ("Forest", "Pasture"): "森林与草地都以绿色植被为主，当树冠纹理不明显时容易被看作更均匀的草地区域。",
+    ("Pasture", "Forest"): "草地与森林共享绿色主色调，阴影或地块边缘会让草地看起来更像森林。",
+    ("SeaLake", "River"): "水体类别共享明显蓝色通道响应，若水面形状较窄或岸线复杂，湖泊容易误判为河流。",
+    ("River", "SeaLake"): "宽河段或河道弯曲区域在局部视野下可能与湖泊十分接近。",
+}
 
 def write_weight_analysis(weight_summaries: list[dict], output_path: str | Path) -> None:
     lines = [
