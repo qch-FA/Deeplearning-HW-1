@@ -29,7 +29,7 @@ python -m pip install numpy Pillow matplotlib
 
 ---
 
-## 2. 数据集放置方式
+## 2. 目录结构
 
 项目默认要求数据集目录结构如下：
 
@@ -38,14 +38,7 @@ hw1/
 ├─ EuroSAT_RGB/
 │  ├─ AnnualCrop/
 │  ├─ Forest/
-│  ├─ HerbaceousVegetation/
-│  ├─ Highway/
-│  ├─ Industrial/
-│  ├─ Pasture/
-│  ├─ PermanentCrop/
-│  ├─ Residential/
-│  ├─ River/
-│  └─ SeaLake/
+│  ├─ ...
 ├─ hw1_mlp/
 ├─ run_hw1.py
 ├─ evaluate_hw1.py
@@ -136,7 +129,7 @@ python run_hw1.py --output-dir outputs_try --search-trials 2 --search-epochs 2 -
 
 ### 4.1 使用默认最佳模型测试
 
-如果已经运行过训练，并且默认权重文件存在：
+如果权重文件存在：
 
 ```bash
 python evaluate_hw1.py
@@ -147,15 +140,6 @@ python evaluate_hw1.py
 - 权重文件：`outputs/final/best_model.npz`
 - 元信息文件：`outputs/final/best_model.json`
 
-脚本会优先从 `best_model.json` 中自动读取：
-
-- 图像大小
-- 数据划分比例
-- 随机种子
-- 隐藏层结构
-- 激活函数
-
-因此通常不需要手动重复填写这些参数。
 
 ### 4.2 指定其他模型权重测试
 
@@ -175,7 +159,7 @@ python evaluate_hw1.py --checkpoint outputs/final/best_model.npz --image-size 32
 
 ---
 
-## 5. 训练完成后会生成什么
+## 5. 训练结果
 
 默认输出目录为 `outputs/`，其中重要文件包括：
 
@@ -187,23 +171,15 @@ python evaluate_hw1.py --checkpoint outputs/final/best_model.npz --image-size 32
 - `outputs/final/best_model.json`
   - 与该权重对应的元信息，包括最佳 epoch、验证集准确率、模型配置等
 
-### 5.2 汇总结果
 
-- `outputs/summary.json`
-  - 本次完整实验的汇总结果
-
-- `outputs/dataset_summary.json`
-  - 数据集划分与标准化统计信息
-
-### 5.3 报告图表与分析结果
+### 5.2 报告图表与分析结果
 
 - `outputs/reports/training_curves.png`
 - `outputs/reports/search_results.png`
 - `outputs/reports/confusion_matrix.png`
 - `outputs/reports/first_layer_weights.png`
 - `outputs/reports/error_cases.png`
-- `outputs/reports/error_analysis.md`
-- `outputs/reports/weight_analysis.md`
+- ...
 
 ---
 
@@ -242,9 +218,6 @@ python evaluate_hw1.py --checkpoint outputs/final/best_model.npz --image-size 32
 
 - `evaluate_hw1.py`
   - 加载指定权重并在测试集上评估
-
-- `export_report_pdf.py`
-  - 将 Markdown 报告导出为 PDF 的辅助脚本
 
 ---
 
