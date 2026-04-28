@@ -253,7 +253,5 @@ python evaluate_hw1.py --checkpoint outputs/final/best_model.npz --image-size 32
 
 1. 本项目默认在 CPU 上运行，不依赖 GPU。
 2. 本项目没有使用任何现成自动微分深度学习框架。
-3. 如果只是验证代码能否跑通，建议先减少 `--search-trials`、`--search-epochs` 和 `--final-epochs`。
-4. 如果希望获得更稳定的结果，请固定 `--seed`，并使用正式实验的训练命令。
 
 ---
